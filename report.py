@@ -59,12 +59,12 @@ def create_report():
 
     # данные — свой счётчик строки, потому что append не используем
     r = start_row + 1
-    for customer, revenue in get_sales_by_day():
-        ws.cell(row=r, column=start_col,     value=customer)
+    for date, revenue in get_sales_by_day():
+        ws.cell(row=r, column=start_col,     value=date).number_format = 'YYYY-MM-DD'
         ws.cell(row=r, column=start_col + 1, value=revenue).number_format = '#,##0.00'
         r += 1
-        wb.save('reports/report.xlsx')
-    print('Report was sucesfully created')
+    wb.save('reports/report.xlsx')
+    print('Report was successfully created')
 
 
 

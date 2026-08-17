@@ -41,7 +41,7 @@ def get_sales_by_product():
     conn = connect()
     cur = conn.cursor()
     cur.execute(
-        """SELECT product, SUM(quantity * price) FROM orders GROUP BY product ORDER BY SUM(quantity * price) DESC;"""
+        """SELECT product, SUM(quantity * price) FROM orders WHERE status='completed' GROUP BY product ORDER BY SUM(quantity * price) DESC;"""
     )
     result = cur.fetchall()
     cur.close()
@@ -53,7 +53,7 @@ def get_sales_by_customer():
     conn = connect()
     cur = conn.cursor()
     cur.execute(
-        """SELECT customer, SUM(quantity * price) FROM orders GROUP BY customer ORDER BY SUM(quantity * price) DESC;"""
+        """SELECT customer, SUM(quantity * price) FROM orders WHERE status='completed' GROUP BY customer ORDER BY SUM(quantity * price) DESC;"""
     )
     result = cur.fetchall()
     cur.close()
@@ -65,12 +65,13 @@ def get_sales_by_day():
     conn = connect()
     cur = conn.cursor()
     cur.execute(
-        """SELECT date, SUM(quantity * price) FROM orders GROUP BY date ORDER BY date;"""
+        """SELECT date, SUM(quantity * price) FROM orders WHERE status='completed' GROUP BY date ORDER BY date;"""
     )
     result = cur.fetchall()
     cur.close()
     conn.close()
     return result
+
 
 if __name__ == "__main__":
     print("Revenue:", get_total_revenue())

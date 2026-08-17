@@ -45,6 +45,6 @@ def save_to_db(df):
 
 if __name__ == "__main__":
     conn = connect()
-    print('Connection is sucesfull')
+    print('Connection is successfully')
     conn.close()
     create_table()
