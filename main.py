@@ -4,7 +4,7 @@ from database import save_to_db, create_table
 from report import create_report
 
 
-def main():
+def run_pipline():
     df = load_data_csv()
     print(df)
     df = clean_data(df)
@@ -16,4 +16,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    run_pipline()
